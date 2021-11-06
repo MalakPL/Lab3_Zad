@@ -83,7 +83,7 @@ auto Zadanie3() -> void
 	cout << "[Zadanie 3]" << endl;
 
 #pragma region Wypisze na konsolę, jaką postać ma równanie kwadratowe. 
-	cout << "Postac rownania kwadratowego to Ax^2 + Bx + C" << endl << endl;
+	cout << "Postac rownania kwadratowego to Ax^2 + Bx + C = 0" << endl << endl;
 #pragma endregion
 
 #pragma region Pobierze od użytkownika liczby A, B i C
@@ -110,7 +110,7 @@ auto Zadanie3() -> void
 	cout << abs(B) << "x";
 
 	cout << ((C >= 0) ? " + " : " - ");
-	cout << abs(C) << endl << endl;
+	cout << abs(C) << " = 0" << endl << endl;
 #pragma endregion
 
 #pragma region Obliczy i wypisze pierwiastki równania.
