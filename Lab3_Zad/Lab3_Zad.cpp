@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <Windows.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ const char* IntCastExceptionMessage = "Podana wartosc nie mogla zostac zrzutowan
 */
 auto Zadanie1() -> void
 {
+	cout << "[Zadanie 1]" << endl;
+
 	float X, Y;
 
 	cout << "Podaj X: "; cin >> X;
@@ -24,7 +27,10 @@ auto Zadanie1() -> void
 	cout << "Podaj Y: "; cin >> Y;
 	if (cin.fail()) { throw exception{ FloatCastExceptionMessage }; }
 
-
+	printf("Suma: %.2f\n", X + Y);
+	printf("Roznica: %.2f\n", X - Y);
+	printf("Iloczyn: %.2f\n", X * Y);
+	printf("Iloraz: % .2f\n\n", X / Y);
 }
 
 /*
@@ -33,28 +39,35 @@ auto Zadanie1() -> void
 */
 auto Zadanie2() -> void
 {
-	int znak = 0;
+	cout << "[Zadanie 2]" << endl;
+
+	bool* MapaZnakow = new bool[256]; memset(MapaZnakow, 0, 256);
 	bool FoundT = false;
 	do
 	{
-		for (int k = 32; k < 126; k++)
+		for (int key = 32; key < 126; key++)
 		{
-			if (GetAsyncKeyState(k))
+			int CurrentSate = GetAsyncKeyState(key);
+			if (GetAsyncKeyState(key) && !MapaZnakow[key]) /* Wykrywamy moment w którym znak został wcześniej wciśniety i a teraz zwolniony */
 			{
-				cout << (char)k;
+				cout << (char)key;
 
-				if (k == (int)'t' || k == (int)'T')
+				if (key == (int)'t' || key == (int)'T')
 				{
 					FoundT = true;
 					break;
 				}
 			}
+
+			MapaZnakow[key] = CurrentSate;
 		}
 
-		Sleep(16);
+		Sleep(1);
 	} while (!FoundT);
 
-	cout << endl;
+	cout << endl << endl;
+
+	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 
 /*
@@ -67,6 +80,8 @@ auto Zadanie2() -> void
 */
 auto Zadanie3() -> void
 {
+	cout << "[Zadanie 3]" << endl;
+
 #pragma region Wypisze na konsolę, jaką postać ma równanie kwadratowe. 
 	cout << "Postac rownania kwadratowego to Ax^2 + Bx + C" << endl << endl;
 #pragma endregion
@@ -119,6 +134,8 @@ auto Zadanie3() -> void
 		cout << "x1: " << (-B / (2 * A)) << " - i(" << (SqrtDelta / (2 * A)) << ")" << endl;
 		cout << "x1: " << (-B / (2 * A)) << " + i(" << (SqrtDelta / (2 * A)) << ")" << endl;
 	}
+
+	cout << endl;
 #pragma endregion
 }
 
@@ -128,6 +145,7 @@ auto Zadanie3() -> void
 */
 auto Zadanie4() -> void
 {
+	cout << "[Zadanie 4]" << endl;
 
 #pragma region Liczba wierszy trójkąta ma być pobrana od użytkownika.
 	int N;
@@ -167,7 +185,7 @@ auto main() -> int
 	/* Obsługa wyjątków */
 	try
 	{
-	
+		Zadanie1();
 		Zadanie2();
 		Zadanie3();
 		Zadanie4();
