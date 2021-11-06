@@ -173,12 +173,12 @@ auto Zadanie4() -> void
 #pragma endregion
 
 #pragma region Napisz program, który wypisze na ekranie trójkąt Pascala.
-	long long** TrojkatPascala = new long long* [N];
+	unsigned long long** TrojkatPascala = new unsigned long long* [N];
 
 	cout << "1" << endl;
 	for (int y = 0; y < N; ++y)
 	{
-		TrojkatPascala[y] = new long long[y + 1];
+		TrojkatPascala[y] = new unsigned long long[y + 1];
 		TrojkatPascala[y][0] = 1;
 		TrojkatPascala[y][y] = 1;
 
