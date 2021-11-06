@@ -9,6 +9,7 @@ using std::exception;
 
 const char* FloatCastExceptionMessage = "Podana wartosc nie mogla zostac zrzutowana do typu float.";
 const char* IntCastExceptionMessage = "Podana wartosc nie mogla zostac zrzutowana do typu int.";
+const char* PascalBadNException = "Podana wartosc musi byc wieksza od 0";
 
 /*
 	Napisz program, który oblicza sumę, różnicę, iloczyn i iloraz dla
@@ -164,7 +165,9 @@ auto Zadanie4() -> void
 	int N;
 
 	cout << "Podaj liczbe wierszy trojkata Pascala: "; cin >> N;
+
 	if (cin.fail()) { throw exception{ IntCastExceptionMessage }; }
+	if (N <= 0) { throw exception{ PascalBadNException }; }
 
 	cout << endl;
 #pragma endregion
@@ -205,7 +208,7 @@ auto main() -> int
 	}
 	catch (exception ex)
 	{
-		cout << "Wyjątek: " << ex.what() << endl;
+		cout << "Wyjatek: " << ex.what() << endl;
 
 		return 1; /* Zwracamy błąd */
 	}
