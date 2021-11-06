@@ -146,7 +146,7 @@ auto Zadanie3() -> void
 	{
 		float SqrtDelta = sqrtf(-Delta);
 		cout << "x1: " << (-B / (2 * A)) << " - i(" << (SqrtDelta / (2 * A)) << ")" << endl;
-		cout << "x1: " << (-B / (2 * A)) << " + i(" << (SqrtDelta / (2 * A)) << ")" << endl;
+		cout << "x2: " << (-B / (2 * A)) << " + i(" << (SqrtDelta / (2 * A)) << ")" << endl;
 	}
 
 	cout << endl;
