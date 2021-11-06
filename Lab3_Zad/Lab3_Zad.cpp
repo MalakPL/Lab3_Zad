@@ -116,7 +116,7 @@ auto Zadanie3() -> void
 #pragma endregion
 
 #pragma region Wypisze postać równania kwadratowego z uwzględnieniem wartości dla A, B i C.
-	cout << "Postac rownania kwadratowego z uwzględnieniem wartości dla A, B i C to: ";
+	cout << "Postac rownania kwadratowego z uwzglednieniem wartosci dla A, B i C to: ";
 
 	cout << A << "x^2";
 
@@ -175,14 +175,16 @@ auto Zadanie4() -> void
 #pragma region Napisz program, który wypisze na ekranie trójkąt Pascala.
 	unsigned long long** TrojkatPascala = new unsigned long long* [N];
 
-	cout << "1" << endl;
 	for (int y = 0; y < N; ++y)
 	{
 		TrojkatPascala[y] = new unsigned long long[y + 1];
 		TrojkatPascala[y][0] = 1;
 		TrojkatPascala[y][y] = 1;
 
-		cout << "1\t";
+		if (y > 0)
+		{
+			cout << "1\t";
+		}
 
 		for (int x = 0; x < y - 1; ++x)
 		{
