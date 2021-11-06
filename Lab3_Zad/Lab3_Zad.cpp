@@ -2,7 +2,10 @@
 #include <Windows.h>
 #include <stdio.h>
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::exception;
 
 const char* FloatCastExceptionMessage = "Podana wartosc nie mogla zostac zrzutowana do typu float.";
 const char* IntCastExceptionMessage = "Podana wartosc nie mogla zostac zrzutowana do typu int.";
@@ -30,7 +33,7 @@ auto Zadanie1() -> void
 	printf("Suma: %.2f\n", X + Y);
 	printf("Roznica: %.2f\n", X - Y);
 	printf("Iloczyn: %.2f\n", X * Y);
-	printf("Iloraz: % .2f\n\n", X / Y);
+	printf("Iloraz: %.2f\n\n", X / Y);
 }
 
 /*
@@ -41,32 +44,42 @@ auto Zadanie2() -> void
 {
 	cout << "[Zadanie 2]" << endl;
 
-	bool* MapaZnakow = new bool[256]; memset(MapaZnakow, 0, 256);
+	/* Robimy mape stanów wszystkich znaków ASCII (wciśniety / zwolniony) */
+	bool* MapaStanow = new bool[256]; memset(MapaStanow, 0, 256);
+	
+	/* Zmienna do przerwania pętli While w przypadku kliknięcia T */
 	bool FoundT = false;
 	do
 	{
-		for (int key = 32; key < 126; key++)
+		/* Sprawdzamy znaki od Spacji do Tyldy, sprawdź ASCII Table https://www.alpharithms.com/s3/assets/img/ascii-chart/ascii-table-alpharithms-scaled.jpg */
+		for (int vKey = 32; vKey < 126; vKey++) 
 		{
-			int CurrentSate = GetAsyncKeyState(key);
-			if (GetAsyncKeyState(key) && !MapaZnakow[key]) /* Wykrywamy moment w którym znak został wcześniej wciśniety i a teraz zwolniony */
-			{
-				cout << (char)key;
+			int CurrentSate = GetAsyncKeyState(vKey);
 
-				if (key == (int)'t' || key == (int)'T')
+			/* Wykrywamy moment w którym znak został wcześniej wciśniety i a teraz zwolniony */
+			if (!CurrentSate && MapaStanow[vKey])
+			{
+				cout << (char)vKey;
+
+				/* Warunek przerwania pętli, w którym zostanie podany znak „t” */
+				if (vKey == (int)'t' || vKey == (int)'T')
 				{
 					FoundT = true;
 					break;
 				}
 			}
 
-			MapaZnakow[key] = CurrentSate;
+			/* Aktualizujemy mape stanów */
+			MapaStanow[vKey] = CurrentSate;
 		}
 
 		Sleep(1);
+
 	} while (!FoundT);
 
 	cout << endl << endl;
 
+	/* Trzeba opróżnić buffor wejścia, bez tego następne zadanie będzie miało podane w std::cin znaki z obecnego zadania. */
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 
