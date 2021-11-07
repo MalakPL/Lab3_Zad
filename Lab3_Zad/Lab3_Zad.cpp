@@ -35,6 +35,13 @@ auto Zadanie1() -> void
 	printf("Roznica: %.2f\n", X - Y);
 	printf("Iloczyn: %.2f\n", X * Y);
 	printf("Iloraz: %.2f\n\n", X / Y);
+
+	/*
+		Można też użyć
+		std::cout << std::fixed;
+		std::cout << std::setprecision(2);
+		...
+	*/
 }
 
 /*
@@ -128,25 +135,25 @@ auto Zadanie3() -> void
 #pragma endregion
 
 #pragma region Obliczy i wypisze pierwiastki równania.
-	cout << "Pierwiastki rownania" << endl;
-
 	float Delta = (B * B) - (4 * A * C);
+	float TwoA = 2 * A;
 
+	cout << ((Delta == 0) ? "Pierwiastek" : "Pierwiastki") << " rownania" << endl;
 	if (Delta > 0)
 	{
 		float SqrtDelta = sqrtf(Delta);
-		cout << "x1: " << ((-B - SqrtDelta) / (2 * A)) << endl;
-		cout << "x2: " << ((-B + SqrtDelta) / (2 * A)) << endl;
+		cout << "x1: " << ((-B - SqrtDelta) / TwoA) << endl;
+		cout << "x2: " << ((-B + SqrtDelta) / TwoA) << endl;
 	}
 	else if (Delta == 0)
 	{
-		cout << "x1: " << (-B / 2 * A) << endl;
+		cout << "x1: " << (-B / TwoA) << endl;
 	}
 	else /* Dodam jeszcze rozwiazanie dla liczb zespolonych */
 	{
 		float SqrtDelta = sqrtf(-Delta);
-		cout << "x1: " << (-B / (2 * A)) << " - i(" << (SqrtDelta / (2 * A)) << ")" << endl;
-		cout << "x2: " << (-B / (2 * A)) << " + i(" << (SqrtDelta / (2 * A)) << ")" << endl;
+		cout << "x1: " << (-B / TwoA) << " - i(" << (SqrtDelta / TwoA) << ")" << endl;
+		cout << "x2: " << (-B / TwoA) << " + i(" << (SqrtDelta / TwoA) << ")" << endl;
 	}
 
 	cout << endl;
@@ -183,17 +190,17 @@ auto Zadanie4() -> void
 
 		if (y > 0)
 		{
-			cout << "1\t";
+			cout << "[1]\t";
 		}
 
 		for (int x = 0; x < y - 1; ++x)
 		{
 			TrojkatPascala[y][x + 1] = TrojkatPascala[y - 1][x] + TrojkatPascala[y - 1][x + 1];
 
-			cout << TrojkatPascala[y][x + 1] << "\t";
+			cout << "[" << TrojkatPascala[y][x + 1] << "]\t";
 		}
 
-		cout << "1" << endl;
+		cout << "[1]" << endl;
 	}
 #pragma endregion
 }
