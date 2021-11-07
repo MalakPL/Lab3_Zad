@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <iomanip>
+#include <conio.h>
 
 using std::cin;
 using std::cout;
@@ -52,6 +53,24 @@ auto Zadanie1() -> void
 	do momentu, aż zostanie podany znak „t”
 */
 auto Zadanie2() -> void
+{
+	cout << "[Zadanie 2]" << endl;
+
+	char znak = 0;
+
+	do
+	{
+		znak = (char)_getch();
+		cout << znak;
+	} while (znak != 't');
+
+	cout << endl;
+}
+
+/* 
+	Trochę inna wersja, która działa w tle, nawet jak okno konsoli nie jest aktywne
+*/
+auto Zadanie2Ex() -> void
 {
 	cout << "[Zadanie 2]" << endl;
 
@@ -216,6 +235,7 @@ auto main() -> int
 	try
 	{
 		Zadanie1();
+		//Zadanie2Ex();
 		Zadanie2();
 		Zadanie3();
 		Zadanie4();
