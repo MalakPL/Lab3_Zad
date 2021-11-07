@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <Windows.h>
 #include <stdio.h>
+#include <iomanip>
 
 using std::cin;
 using std::cout;
@@ -19,6 +20,7 @@ const char* PascalBadNException = "Podana wartosc musi byc wieksza od 0";
 	format wyświetlania ich na ekranie z dokładnością do dwóch
 	miejsc po kropce.
 */
+
 auto Zadanie1() -> void
 {
 	cout << "[Zadanie 1]" << endl;
@@ -35,6 +37,7 @@ auto Zadanie1() -> void
 	printf("Roznica: %.2f\n", X - Y);
 	printf("Iloczyn: %.2f\n", X * Y);
 	printf("Iloraz: %.2f\n\n", X / Y);
+
 
 	/*
 		Można też użyć
@@ -54,13 +57,13 @@ auto Zadanie2() -> void
 
 	/* Robimy mape stanów wszystkich znaków ASCII (wciśniety / zwolniony) */
 	bool* MapaStanow = new bool[256]; memset(MapaStanow, 0, 256);
-	
+
 	/* Zmienna do przerwania pętli While w przypadku kliknięcia T */
 	bool FoundT = false;
 	do
 	{
 		/* Sprawdzamy znaki od Spacji do Tyldy, sprawdź ASCII Table https://www.alpharithms.com/s3/assets/img/ascii-chart/ascii-table-alpharithms-scaled.jpg */
-		for (int vKey = 32; vKey < 126; vKey++) 
+		for (int vKey = 32; vKey < 126; vKey++)
 		{
 			int CurrentSate = GetAsyncKeyState(vKey);
 
@@ -188,20 +191,22 @@ auto Zadanie4() -> void
 		TrojkatPascala[y][0] = 1;
 		TrojkatPascala[y][y] = 1;
 
+		cout << std::setw(3 * (static_cast<std::streamsize>(N) - y)) << "";
+
 		if (y > 0)
 		{
-			cout << "[1]\t";
+			cout << std::setw(6) << "1";
 		}
 
 		for (int x = 0; x < y - 1; ++x)
 		{
 			TrojkatPascala[y][x + 1] = TrojkatPascala[y - 1][x] + TrojkatPascala[y - 1][x + 1];
 
-			cout << "[" << TrojkatPascala[y][x + 1] << "]\t";
+			cout << std::setw(6) << TrojkatPascala[y][x + 1];
 		}
-
-		cout << "[1]" << endl;
+		cout << std::setw(6) << "1" << endl;
 	}
+
 #pragma endregion
 }
 
